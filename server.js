@@ -5,6 +5,11 @@ const app = express();
 
 const session = require('express-session');
 const flash = require('connect-flash');
+const passport = require('./config/ppConfig');
+const isLoggedIn = require('./middleware/isLoggedIn');
+
+
+
 
 // Environment variables
 SECRET_SESSION = process.env.SECRET_SESSION;
@@ -20,6 +25,8 @@ app.use(layouts);
 
 app.use(flash());            // flash middleware
 
+
+
 app.use(session({
   secret: SECRET_SESSION,    // What we actually will be giving the user on our site as a session cookie
   resave: false,             // Save the session even if it's modified, make this false
@@ -28,6 +35,8 @@ app.use(session({
 
 
 // add passport 
+app.use(passport.initialize());      // Initialize passport
+app.use(passport.session());         // Add a session
 
 app.use((req, res, next) => {
   console.log(res.locals);
