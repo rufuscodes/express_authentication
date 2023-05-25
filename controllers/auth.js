@@ -51,7 +51,16 @@ router.post('/signup', async (req, res) => {
   }
 });
 
+router.get('/logout', (req, res) => {
+  req.logOut(function(err, next) {
+    if (err) {
+      return next(err);
+    }
+      req.flash('success', 'Logging out... See you next time!');
+      res.redirect('/');
 
+  })
+});
 
 
 
