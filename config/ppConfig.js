@@ -9,14 +9,14 @@ const STRATEGY = new LocalStrategy({
     passwordField: 'password'       // looks for an password field as the password
     }, async (email, password, cb) => {
         try {
-            const user = await user.findOne({
+            const foundUser = await foundUser.findOne({
                 where: { email }
             });
 
-            if (!user || !user.validPassword(password)) { 
-                cb(null, false);     // if no user or invalid password, return false
+            if (!foundUser || !foundfoundUser.validPassword(password)) { 
+                cb(null, false);     // if no foundUser or invalid password, return false
             } else {
-                cb(null, user);
+                cb(null, foundUser);
             }
         } catch (err) {
             console.log('------- Error below -----------');
@@ -25,16 +25,16 @@ const STRATEGY = new LocalStrategy({
 })
 
 // Passport "serialize" info to be able to login
-passport.serializeUser((user, cb) => {
-    cb(null, user.id);
+passport.serializeUser((foundUser, cb) => {
+    cb(null, foundUser.id);
 });
 
 passport.deserializeUser(async (id, cb) => {
     try {
-        const user = await user.findByPk(id);
+        const foundUser = await foundUser.findByPk(id);
 
-        if (user) {
-            cb(null, user)
+        if (foundUser) {
+            cb(null, foundUser)
         }
     } catch (err) {
         console.log('---- Yo... There is an error ----');
