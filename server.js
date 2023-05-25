@@ -7,7 +7,7 @@ const session = require('express-session');
 const flash = require('connect-flash');
 
 // Environment variables
-SECRET_SESSION = process.env.SECRET_SESSIONS;
+SECRET_SESSION = process.env.SECRET_SESSION;
 
 // console.log(SECRET_SESSION);
 
