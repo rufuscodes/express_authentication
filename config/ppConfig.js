@@ -9,7 +9,7 @@ const STRATEGY = new LocalStrategy({
     passwordField: 'password'       // looks for an password field as the password
     }, async (email, password, cb) => {
         try {
-            const foundUser = await foundUser.findOne({
+            const foundUser = await user.findOne({
                 where: { email }
             });
 
@@ -31,7 +31,7 @@ passport.serializeUser((foundUser, cb) => {
 
 passport.deserializeUser(async (id, cb) => {
     try {
-        const foundUser = await foundUser.findByPk(id);
+        const foundUser = await user.findByPk(id);
 
         if (foundUser) {
             cb(null, foundUser)
